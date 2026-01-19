@@ -1,8 +1,18 @@
+// app/page.js
+import VideoPlayer from './components/VideoPlayer';
+import Purpose from './components/Purpose';
+import KPI from './components/KPI';
+import Experience from './components/Experience';
+import Contact from './contact/page';
+
 export default function Home() {
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Welcome to the Client Presentation</h1>
-      <p className="text-gray-700">Your content goes here...</p>
+    <div className="min-h-screen">
+      <VideoPlayer />
+      <Purpose />
+      <KPI />
+      <Experience />
+      <Contact />
     </div>
   );
 }

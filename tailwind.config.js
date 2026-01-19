@@ -2,17 +2,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}", 
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    // Include all possible file locations
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",  // This covers everything in src/
   ],
   theme: {
-    extend: {
-      fontFamily: {
-        sans: ['Arial', 'sans-serif'],
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }

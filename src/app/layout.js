@@ -1,6 +1,8 @@
 // app/layout.js
+import './globals.css';
 import localFont from 'next/font/local';
 import Navbar from './components/navbar';
+import Footer from './components/Footer';
 
 const norden = localFont({
   src: [
@@ -19,9 +21,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="bg-white">
         <Navbar />
-        <main className="lg:ml-96 pt-16 lg:pt-0 min-h-screen overflow-x-hidden">
+        <main className="min-h-screen">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );
