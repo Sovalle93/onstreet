@@ -3,7 +3,6 @@ import VideoPlayer from './components/VideoPlayer';
 import Purpose from './components/Purpose';
 import KPI from './components/KPI';
 import Experience from './components/Experience';
-import Contact from './contact/page';
 
 export default function Home() {
   return (
@@ -12,7 +11,6 @@ export default function Home() {
       <Purpose />
       <KPI />
       <Experience />
-      <Contact />
     </div>
   );
 }

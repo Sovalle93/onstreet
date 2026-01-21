@@ -1,0 +1,60 @@
+// components/services/TypeOfService.js
+import Image from 'next/image';
+
+const TypeOfService = () => {
+  const serviceTypes = [
+    {
+      title: 'Atención Presencial',
+      description: 'Atención directa en terreno, cercana y personalizada.',
+      image: '/placeholder-presencial.jpg' // Replace with actual image path
+    },
+    {
+      title: 'Atención Remota',
+      description: 'Asistencia digital guiada desde cualquier ubicación.',
+      image: '/placeholder-remota.jpg' // Replace with actual image path
+    },
+    {
+      title: 'Autoatención',
+      description: 'Gestión autónoma de trámites de forma rápida y simple.',
+      image: '/placeholder-autoatencion.jpg' // Replace with actual image path
+    }
+  ];
+
+  return (
+    <section className="py-16 px-4 bg-white">
+      <div className="container mx-auto max-w-7xl">
+        {/* Title */}
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-12">
+          NUESTROS TIPOS DE ATENCIÓN
+        </h2>
+
+        {/* 3-Grid Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {serviceTypes.map((service, index) => (
+            <div 
+              key={index}
+              className="border border-gray-300 rounded-xl bg-white p-8 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300"
+            >
+              {/* Image Placeholder */}
+              <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6">
+                <div className="text-gray-400 text-4xl">{index + 1}</div>
+              </div>
+              
+              {/* Title */}
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                {service.title}
+              </h3>
+              
+              {/* Description */}
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default TypeOfService;
