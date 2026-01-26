@@ -2,7 +2,7 @@
 import './globals.css';
 import localFont from 'next/font/local';
 import Navbar from './components/navbar';
-import Footer from './components/Footer';
+import Footer from './components/home/Footer';
 
 const norden = localFont({
   src: [
