@@ -1,16 +1,52 @@
-'use client';
-import { useState } from 'react';
 import NewsGrid from '../components/news/NewsGrid';
 import LatestNewsSidebar from '../components/news/LatestNewsSidebar';
 import NewsCarousel from '../components/news/NewsCarousel';
-import { mainNews, latestNews, relatedPosts } from '../data/news';
+import { client } from '../lib/Sanity';
 
-export default function NoticiasPage() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 8;
+// Fetch initial data on server
+async function getNewsData() {
+  try {
+    const query = `*[_type == "news"] | order(publishedAt desc)[0...12] {
+      _id,
+      title,
+      slug,
+      excerpt,
+      source,
+      "imageUrl": image.asset->url,
+      externalImage,
+      category,
+      publishedAt,
+      featured
+    }`;
+    
+    return await client.fetch(query);
+  } catch (error) {
+    console.error('Error fetching news:', error);
+    return [];
+  }
+}
 
-  // Limit carousel to 3 items
-  const limitedRelatedPosts = relatedPosts.slice(0, 3);
+async function getLatestNews() {
+  try {
+    const query = `*[_type == "news"] | order(publishedAt desc)[0...5] {
+      _id,
+      title,
+      slug,
+      publishedAt
+    }`;
+    
+    return await client.fetch(query);
+  } catch (error) {
+    console.error('Error fetching latest news:', error);
+    return [];
+  }
+}
+
+export default async function NoticiasPage() {
+  const [news, latestNews] = await Promise.all([
+    getNewsData(),
+    getLatestNews()
+  ]);
 
   return (
     <div className="min-h-screen py-12 px-4">
@@ -27,24 +63,15 @@ export default function NoticiasPage() {
 
         {/* Main Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Main Content - 3 columns with pagination */}
+          {/* Main Content */}
           <div className="lg:col-span-3">
-            <NewsGrid 
-              newsItems={mainNews} 
-              currentPage={currentPage}
-              itemsPerPage={itemsPerPage}
-            />
+            <NewsGrid initialNews={news} />
           </div>
           
-          {/* Sidebar - Latest News (max 5) */}
+          {/* Sidebar */}
           <div className="lg:col-span-1">
             <LatestNewsSidebar latestNews={latestNews} />
           </div>
-        </div>
-
-        {/* Related Posts Carousel (limited to 3) */}
-        <div className="mt-16">
-          <NewsCarousel relatedPosts={limitedRelatedPosts} />
         </div>
       </div>
     </div>
