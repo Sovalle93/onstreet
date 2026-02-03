@@ -14,12 +14,12 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'apicdn.sanity.io',
+        hostname: '*.cdn.sanity.io',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: '**', // Allow all HTTPS domains (for debugging)
+        hostname: '*.sanity.io',
         pathname: '/**',
       },
     ],
