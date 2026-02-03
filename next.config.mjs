@@ -2,11 +2,6 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-    {
-        protocol: 'https',
-        hostname: 'www.estrategiasdeinversion.com',
-        pathname: '/uploads/**',
-      },
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
@@ -14,17 +9,17 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'www.caixabank.com',
+        hostname: 'cdn.sanity.io',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'www.madridiario.es',
+        hostname: 'apicdn.sanity.io',
         pathname: '/**',
       },
       {
         protocol: 'https',
-        hostname: 'beta.elmercurio.com',
+        hostname: '**', // Allow all HTTPS domains (for debugging)
         pathname: '/**',
       },
     ],

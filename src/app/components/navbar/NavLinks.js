@@ -10,13 +10,19 @@ const NavLink = ({ href, children }) => {
   return (
     <Link
       href={href}
-      className={`px-4 uppercase font-bold ${
-        isActive
+      className={`
+        px-4 py-2 uppercase font-bold text-sm tracking-wide
+        relative transition-colors duration-300
+        ${isActive
           ? 'text-[#f99963]'
           : 'text-gray-800 hover:text-[#f99963]'
-      }`}
+        }
+      `}
     >
       {children}
+      {isActive && (
+        <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-[#f99963] rounded-full"></span>
+      )}
     </Link>
   );
 };
@@ -31,14 +37,14 @@ const NavLinks = () => {
   ];
 
   return (
-    <nav className="flex items-center space-x-2">
+    <nav className="flex items-center space-x-1">
       {navItems.map((item, index) => (
-        <div key={item.href} className="flex items-center"> {/* Wrapper div with key */}
+        <div key={item.href} className="flex items-center">
           <NavLink href={item.href}>
             {item.label}
           </NavLink>
           {index < navItems.length - 1 && (
-            <span className="text-gray-300">|</span>
+            <span className="text-gray-300 text-xs">•</span>
           )}
         </div>
       ))}

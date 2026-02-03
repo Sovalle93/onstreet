@@ -1,10 +1,12 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Purpose = () => {
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const activities = [
     { 
@@ -17,9 +19,9 @@ const Purpose = () => {
     },
     { 
       title: 'Estado Cercano y Eficiente',
-        image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457321/Landing_Cobertura_y_Regulaci%C3%B3n_yh6yq5.png'
-      },
-      { 
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457321/Landing_Cobertura_y_Regulaci%C3%B3n_yh6yq5.png'
+    },
+    { 
       title: 'Cobertura y Regulación',
       image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457319/Landing_Estado_Cercano_y_Eficiente_btj9mh.png'
     },
@@ -29,8 +31,9 @@ const Purpose = () => {
     },
   ];
 
-  const openModal = (activity) => {
+  const openModal = (activity, index) => {
     setSelectedActivity(activity);
+    setCurrentIndex(index);
     setIsModalOpen(true);
     // Prevent body scrolling when modal is open
     document.body.style.overflow = 'hidden';
@@ -44,6 +47,18 @@ const Purpose = () => {
     setTimeout(() => setSelectedActivity(null), 300);
   };
 
+  const goToNext = () => {
+    const nextIndex = (currentIndex + 1) % activities.length;
+    setCurrentIndex(nextIndex);
+    setSelectedActivity(activities[nextIndex]);
+  };
+
+  const goToPrev = () => {
+    const prevIndex = (currentIndex - 1 + activities.length) % activities.length;
+    setCurrentIndex(prevIndex);
+    setSelectedActivity(activities[prevIndex]);
+  };
+
   // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
@@ -55,6 +70,46 @@ const Purpose = () => {
     window.addEventListener('keydown', handleEscape);
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isModalOpen]);
+
+  // Handle swipe gestures for mobile
+  useEffect(() => {
+    if (!isModalOpen) return;
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const handleTouchStart = (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    };
+
+    const handleTouchEnd = (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    };
+
+    const handleSwipe = () => {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          // Swipe left - next
+          goToNext();
+        } else {
+          // Swipe right - previous
+          goToPrev();
+        }
+      }
+    };
+
+    document.addEventListener('touchstart', handleTouchStart);
+    document.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      document.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isModalOpen, currentIndex]);
 
   return (
     <section className="py-16 px-4 bg-white">
@@ -74,69 +129,170 @@ const Purpose = () => {
           </p>
         </div>
 
-        {/* 5-Image Grid with Clickable Activities */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        {/* 5-Image Grid with Clickable Activities - Responsive */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
           {activities.map((activity, index) => (
             <div 
               key={index}
-              className="relative rounded-lg overflow-hidden shadow-lg group cursor-pointer hover:shadow-xl transition-shadow"
-              onClick={() => openModal(activity)}
+              className="relative rounded-xl overflow-hidden shadow-lg group cursor-pointer hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 active:scale-95"
+              onClick={() => openModal(activity, index)}
+              onKeyDown={(e) => e.key === 'Enter' && openModal(activity, index)}
+              role="button"
+              tabIndex={0}
+              aria-label={`Abrir ${activity.title}`}
             >
-              {/* Image with Gradient Overlay */}
-              <div className="h-64 bg-gradient-to-br from-blue-100 to-blue-300">
-                {/* Text Centered on Image */}
-                <div className="absolute inset-0 flex items-center justify-center p-4">
-                  <h3 className="text-white font-bold text-lg text-center drop-shadow-lg">
+              {/* Gradient Background with Text */}
+              <div className="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-blue-500 to-blue-700 relative overflow-hidden">
+                {/* Optional: Add a subtle pattern or texture */}
+                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,#ffffff_1px,transparent_0)] bg-[length:20px_20px]"></div>
+                
+                {/* Text Container */}
+                <div className="absolute inset-0 flex items-center justify-center p-4 bg-gradient-to-t from-black/20 to-transparent">
+                  <h3 className="text-white font-bold text-base sm:text-lg text-center drop-shadow-lg px-2">
                     {activity.title}
                   </h3>
+                </div>
+                
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  <div className="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
+                      <div className="text-white font-bold text-sm">Ver folleto</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Modal/Lightbox - Scrollable */}
+        {/* Responsive Modal/Lightbox */}
         {isModalOpen && selectedActivity && (
-          <div className="fixed inset-0 z-50 flex flex-col bg-black">
-            {/* Header with Close Button */}
-            <div className="flex justify-between items-center p-4 bg-black/90 border-b border-gray-800">
-              <h3 className="text-white text-lg font-medium">
-                {selectedActivity.title}
-              </h3>
-              <button
-                onClick={closeModal}
-                className="text-white text-3xl hover:text-gray-300 transition-colors p-2"
-                aria-label="Cerrar"
-              >
-                ×
-              </button>
-            </div>
+          <>
+            {/* Backdrop */}
+            <div 
+              className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm transition-opacity duration-300"
+              onClick={closeModal}
+            />
             
-            {/* Scrollable Image Container */}
-            <div className="flex-1 overflow-y-auto">
-              <div className="min-h-full flex items-start justify-center p-4">
-                <div className="relative">
-                  <Image
-                    src={selectedActivity.image}
-                    alt={selectedActivity.title}
-                    width={1200}
-                    height={3000} // Tall height for brochure
-                    className="max-w-full h-auto"
-                    style={{ width: 'auto', height: 'auto' }}
-                    quality={100}
-                    priority
-                  />
+            {/* Modal Container */}
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6">
+              <div 
+                className="bg-white rounded-xl shadow-2xl w-full max-w-7xl max-h-[90vh] md:max-h-[95vh] flex flex-col overflow-hidden"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header */}
+                <div className="flex justify-between items-center p-4 bg-white border-b border-gray-200 sticky top-0 z-10">
+                  <div className="flex items-center gap-3">
+                    {/* Navigation Buttons - Mobile only */}
+                    <div className="flex md:hidden gap-2">
+                      <button
+                        onClick={goToPrev}
+                        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                        aria-label="Anterior"
+                      >
+                        <ChevronLeft size={20} className="text-gray-900"/>
+                      </button>
+                      <button
+                        onClick={goToNext}
+                        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                        aria-label="Siguiente"
+                      >
+                        <ChevronRight size={20} className="text-gray-900"/>
+                      </button>
+                    </div>
+                    
+                    <h3 className="text-base sm:text-lg md:text-xl font-bold text-gray-800 truncate max-w-[200px] sm:max-w-md">
+                      {selectedActivity.title}
+                    </h3>
+                  </div>
+                  
+                  <div className="flex items-center gap-2">
+                    {/* Navigation Buttons - Desktop only */}
+                    <div className="hidden md:flex gap-2">
+                      <button
+                        onClick={goToPrev}
+                        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                        aria-label="Anterior"
+                      >
+                        <ChevronLeft size={20}/>
+                      </button>
+                      <span className="text-sm text-black">
+                        {currentIndex + 1} / {activities.length}
+                      </span>
+                      <button
+                        onClick={goToNext}
+                        className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
+                        aria-label="Siguiente"
+                      >
+                        <ChevronRight size={20}/>
+                      </button>
+                    </div>
+                    
+                    <button
+                      onClick={closeModal}
+                      className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-800 transition-colors ml-2 sm:ml-4"
+                      aria-label="Cerrar"
+                    >
+                      <X size={24} />
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Image Container - Scrollable */}
+                <div className="flex-1 overflow-y-auto p-2 sm:p-4">
+                  <div className="min-h-full flex items-center justify-center">
+                    <div className="relative w-full max-w-4xl mx-auto">
+                      <Image
+                        src={selectedActivity.image}
+                        alt={selectedActivity.title}
+                        width={1200}
+                        height={3000}
+                        className="w-full h-auto rounded-lg shadow-lg"
+                        quality={100}
+                        priority
+                        sizes="(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 1200px"
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Footer - Mobile */}
+                <div className="md:hidden p-4 bg-gray-50 border-t border-gray-200">
+                  <div className="flex justify-between items-center">
+                    <div className="text-sm text-gray-500">
+                      {currentIndex + 1} de {activities.length}
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={goToPrev}
+                        className="px-4 py-2 bg-gray-200 text-black hover:bg-gray-300 rounded-lg text-sm font-medium transition-colors"
+                      >
+                        Anterior
+                      </button>
+                      <button
+                        onClick={goToNext}
+                        className="px-4 py-2 bg-[#f99963] text-white hover:bg-orange-600 rounded-lg text-sm font-medium transition-colors"
+                      >
+                        Siguiente
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Footer Instructions */}
+                <div className="p-3 bg-gray-50 border-t border-gray-200 text-center">
+                  <p className="text-xs sm:text-sm text-gray-500 flex flex-wrap justify-center gap-1">
+                    <span>Desplázate para ver el folleto completo</span>
+                    <span className="hidden sm:inline">•</span>
+                    <span>En móvil: desliza para cambiar</span>
+                    <span className="hidden sm:inline">•</span>
+                    <span>Presiona ESC para cerrar</span>
+                  </p>
                 </div>
               </div>
             </div>
-            
-            {/* Footer with Instructions */}
-            <div className="p-4 bg-black/90 border-t border-gray-800 text-center">
-              <p className="text-gray-400 text-sm">
-                Desplázate para ver el folleto completo • Presiona ESC para cerrar
-              </p>
-            </div>
-          </div>
+          </>
         )}
       </div>
     </section>
