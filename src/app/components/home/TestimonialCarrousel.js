@@ -1,6 +1,6 @@
 // components/TestimonialCarousel.js
 'use client';
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 const TestimonialCarousel = () => {
@@ -56,18 +56,66 @@ const TestimonialCarousel = () => {
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
 
-  const goToNext = () => {
+  // Auto-play timer duration in milliseconds (5 seconds)
+  const AUTO_PLAY_DURATION = 5000;
+
+  const goToNext = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-  };
+    setProgress(0); // Reset progress bar
+  }, [testimonials.length]);
 
   const goToPrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length);
+    setProgress(0); // Reset progress bar
   };
 
   const goToSlide = (index) => {
     setCurrentIndex(index);
+    setProgress(0); // Reset progress bar
   };
+
+  // Timer effect
+  useEffect(() => {
+    let intervalId;
+    let progressInterval;
+
+    if (isAutoPlaying) {
+      // Progress bar update (every 100ms for smooth animation)
+      progressInterval = setInterval(() => {
+        setProgress((prevProgress) => {
+          const newProgress = prevProgress + (100 / (AUTO_PLAY_DURATION / 100));
+          return newProgress >= 100 ? 100 : newProgress;
+        });
+      }, 100);
+
+      // Slide change timer
+      intervalId = setInterval(() => {
+        goToNext();
+      }, AUTO_PLAY_DURATION);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+      clearInterval(progressInterval);
+    };
+  }, [isAutoPlaying, goToNext]);
+
+  // Pause autoplay when user interacts
+  const handleUserInteraction = () => {
+    setIsAutoPlaying(false);
+    // Optional: Resume after 10 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoPlaying(true);
+    }, 10000);
+  };
+
+  // Reset progress when index changes
+  useEffect(() => {
+    setProgress(0);
+  }, [currentIndex]);
 
   const currentTestimonial = testimonials[currentIndex];
 
@@ -78,6 +126,14 @@ const TestimonialCarousel = () => {
       </h2>
       
       <div className="relative bg-white rounded-xl shadow-lg overflow-hidden">
+        {/* Auto-play indicator */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200 z-10">
+          <div 
+            className="h-full bg-[#f99963] transition-all duration-100 ease-linear"
+            style={{ width: `${progress}%` }}
+          />
+        </div>
+
         <div className="flex flex-col md:flex-row">
           {/* Image Section */}
           <div className="md:w-1/2 relative h-64 md:h-96">
@@ -115,7 +171,10 @@ const TestimonialCarousel = () => {
         <div className="flex items-center justify-between p-4 bg-gray-50">
           {/* Previous Button */}
           <button
-            onClick={goToPrev}
+            onClick={() => {
+              handleUserInteraction();
+              goToPrev();
+            }}
             className="p-2 rounded-full hover:bg-gray-200 transition-colors"
             aria-label="Testimonio anterior"
           >
@@ -129,7 +188,10 @@ const TestimonialCarousel = () => {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                onClick={() => goToSlide(index)}
+                onClick={() => {
+                  handleUserInteraction();
+                  goToSlide(index);
+                }}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   index === currentIndex ? 'bg-gray-800' : 'bg-gray-300'
                 }`}
@@ -140,13 +202,35 @@ const TestimonialCarousel = () => {
           
           {/* Next Button */}
           <button
-            onClick={goToNext}
+            onClick={() => {
+              handleUserInteraction();
+              goToNext();
+            }}
             className="p-2 rounded-full hover:bg-gray-200 transition-colors"
             aria-label="Siguiente testimonio"
           >
             <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
             </svg>
+          </button>
+        </div>
+
+        {/* Auto-play controls (optional) */}
+        <div className="absolute bottom-20 right-4 md:bottom-4 md:right-4 flex gap-2">
+          <button
+            onClick={() => setIsAutoPlaying(!isAutoPlaying)}
+            className="bg-white/80 backdrop-blur-sm p-2 rounded-full shadow-lg hover:bg-white transition-colors"
+            aria-label={isAutoPlaying ? "Pausar auto-play" : "Reanudar auto-play"}
+          >
+            {isAutoPlaying ? (
+              <svg className="w-4 h-4 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            ) : (
+              <svg className="w-4 h-4 text-gray-700" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+              </svg>
+            )}
           </button>
         </div>
       </div>

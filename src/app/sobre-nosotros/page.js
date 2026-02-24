@@ -1,8 +1,8 @@
 // app/sobre-nosotros/page.js
 import WorkerQuotesCarousel from '../components/aboutus/WorkerQuotesCarrousel';
-import History from '../components/aboutus/History';
 import Principles from '../components/aboutus/Principles';
 import MotherCompany from '../components/aboutus/MotherCompany';
+import History from '../components/aboutus/History';
 
 export default function SobreNosotrosPage() {
   return (
@@ -19,9 +19,8 @@ export default function SobreNosotrosPage() {
         <div className="mb-20">
           <WorkerQuotesCarousel />
         </div>
-
-        <History />
         <Principles />
+        <History />
         <MotherCompany />
       </div>
     </div>

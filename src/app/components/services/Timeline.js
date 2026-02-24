@@ -9,7 +9,7 @@ const Timeline = () => {
     {
       number: 2,
       title: 'Diseñamos',
-      description: 'Creamos Soluciones Móbiles a medida de cada proyecto'
+      description: 'Creamos Soluciones Móviles a medida de cada proyecto'
     },
     {
       number: 3,

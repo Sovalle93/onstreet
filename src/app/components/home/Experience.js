@@ -1,6 +1,7 @@
 // components/Experience.js
 import Image from 'next/image';
 import TestimonialCarousel from './TestimonialCarrousel';
+import ClientCarousel from './ClientCarrousel';
 
 const Experience = () => {
   return (
@@ -16,17 +17,12 @@ const Experience = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-800 text-center mb-8">
             QUIENES HAN CONFIADO EN NOSOTROS
           </h2>
-          <div className="relative w-full h-64 md:h-80 rounded-lg overflow-hidden">
-            <Image
-              src="https://res.cloudinary.com/dmivjpb65/image/upload/v1768829049/2_cxbjxu.png"
-              alt="Clientes que confían en nosotros"
-              fill
-              className="object-cover"
-            />
-          </div>
+        <div className="mb-16">
+          <ClientCarousel />
+        </div>
         </div>
 
-{/* 
+{ 
         <div className="mb-16">
           <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
             NUESTRAS CERTIFICACIONES
@@ -46,7 +42,7 @@ const Experience = () => {
               className="object-cover"
             />
           </div>
-        </div> */}
+        </div>}
       </div>
     </section>
   );

@@ -11,23 +11,28 @@ const Purpose = () => {
   const activities = [
     { 
       title: 'Externalización: Comprar v/s arrendar',
-      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457171/Landing_Externalizaci%C3%B3n_f0sel4.png'
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457171/Landing_Externalizaci%C3%B3n_f0sel4.png',
+      thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893369/Externalizacion_Foto_tkujf2.jpg'
     },
     { 
       title: 'Listas de Espera',
-      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769456440/Landing_Listas_de_Espera_i8vkum.png'
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769456440/Landing_Listas_de_Espera_i8vkum.png',
+      thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893369/Lista_Foto_d1hsps.jpg'
     },
     { 
       title: 'Estado Cercano y Eficiente',
-      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457321/Landing_Cobertura_y_Regulaci%C3%B3n_yh6yq5.png'
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457321/Landing_Cobertura_y_Regulaci%C3%B3n_yh6yq5.png',
+      thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893369/Estado_Cercano_Foto_p9lpux.jpg'
     },
     { 
       title: 'Cobertura y Regulación',
-      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457319/Landing_Estado_Cercano_y_Eficiente_btj9mh.png'
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457319/Landing_Estado_Cercano_y_Eficiente_btj9mh.png',
+      thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893557/Cobertura_Foto_ruadht.jpg'
     },
     { 
-      title: 'Sostenabilidad y Comuna',
-      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457125/Landing_Sostenibilidad_y_Comunidad_ccadze.png'
+      title: 'Sostenibilidad y Comunidad',
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457125/Landing_Sostenibilidad_y_Comunidad_ccadze.png',
+      thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893369/Sostenabilidad_Foto_pljskr.jpg'
     },
   ];
 
@@ -35,15 +40,12 @@ const Purpose = () => {
     setSelectedActivity(activity);
     setCurrentIndex(index);
     setIsModalOpen(true);
-    // Prevent body scrolling when modal is open
     document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    // Re-enable body scrolling
     document.body.style.overflow = 'auto';
-    // Small delay before clearing selectedActivity for smooth transition
     setTimeout(() => setSelectedActivity(null), 300);
   };
 
@@ -59,7 +61,6 @@ const Purpose = () => {
     setSelectedActivity(activities[prevIndex]);
   };
 
-  // Close modal on Escape key
   useEffect(() => {
     const handleEscape = (e) => {
       if (e.key === 'Escape' && isModalOpen) {
@@ -71,7 +72,6 @@ const Purpose = () => {
     return () => window.removeEventListener('keydown', handleEscape);
   }, [isModalOpen]);
 
-  // Handle swipe gestures for mobile
   useEffect(() => {
     if (!isModalOpen) return;
 
@@ -93,10 +93,8 @@ const Purpose = () => {
 
       if (Math.abs(diff) > swipeThreshold) {
         if (diff > 0) {
-          // Swipe left - next
           goToNext();
         } else {
-          // Swipe right - previous
           goToPrev();
         }
       }
@@ -121,15 +119,21 @@ const Purpose = () => {
 
         {/* What We Do Section */}
         <div className="mb-16">
-          <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
             ¿QUÉ HACEMOS?
           </h2>
-          <p className="text-lg md:text-xl text-center text-gray-600 max-w-3xl mx-auto">
+          <h3 className="text-2xl md:text-3xl text-center text-[#f99963] font-semibold mb-6">
             Arriendo y Servicio de Operación Integral de Oficinas y Clínicas Móviles
+          </h3>
+          <p className="text-lg md:text-xl text-center text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            En <span className="font-semibold text-gray-800">On Street</span> somos líderes en arriendo y operación de oficinas, 
+            sucursales y clínicas móviles en todo Chile. Nuestra solución integral nace de una convicción simple: la distancia no debe ser 
+            una barrera para recibir atención, servicios ni oportunidades. Por eso, organizamos nuestro trabajo en torno a cinco estrategias 
+            que orientan cómo llegamos a cada lugar del país, con quién trabajamos y el impacto que generamos en las personas y comunidades.
           </p>
         </div>
 
-        {/* 5-Image Grid with Clickable Activities - Responsive */}
+        {/* 5-Image Grid with Clickable Activities */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 md:gap-6">
           {activities.map((activity, index) => (
             <div 
@@ -141,23 +145,30 @@ const Purpose = () => {
               tabIndex={0}
               aria-label={`Abrir ${activity.title}`}
             >
-              {/* Gradient Background with Text */}
-              <div className="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-blue-500 to-blue-700 relative overflow-hidden">
-                {/* Optional: Add a subtle pattern or texture */}
-                <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_1px_1px,#ffffff_1px,transparent_0)] bg-[length:20px_20px]"></div>
+              {/* Image Background */}
+              <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+                <Image
+                  src={activity.thumbnail}
+                  alt={activity.title}
+                  fill
+                  className="object-cover transition-all duration-500 brightness-90 group-hover:brightness-100"
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                />
                 
-                {/* Text Container */}
-                <div className="absolute inset-0 flex items-center justify-center p-4 bg-gradient-to-t from-black/20 to-transparent">
-                  <h3 className="text-white font-bold text-base sm:text-lg text-center drop-shadow-lg px-2">
+                {/* Dark overlay - reduced opacity on hover */}
+                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-300"></div>
+                
+                {/* Content Container - Centered */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-4">
+                  {/* Title */}
+                  <h3 className="text-white font-bold text-base sm:text-lg text-center drop-shadow-lg px-2 mb-2">
                     {activity.title}
                   </h3>
-                </div>
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-all duration-300 flex items-center justify-center">
+                  
+                  {/* Ver Folleto - Now below the title with animation */}
                   <div className="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-3">
-                      <div className="text-white font-bold text-sm">Ver folleto</div>
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2">
+                      <span className="text-white font-bold text-sm whitespace-nowrap">Ver folleto</span>
                     </div>
                   </div>
                 </div>
@@ -166,7 +177,7 @@ const Purpose = () => {
           ))}
         </div>
 
-        {/* Responsive Modal/Lightbox */}
+        {/* Responsive Modal/Lightbox - Rest of the component remains the same */}
         {isModalOpen && selectedActivity && (
           <>
             {/* Backdrop */}
@@ -215,7 +226,7 @@ const Purpose = () => {
                         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                         aria-label="Anterior"
                       >
-                        <ChevronLeft size={20}/>
+                        <ChevronLeft size={20} className="text-gray-900"/>
                       </button>
                       <span className="text-sm text-black">
                         {currentIndex + 1} / {activities.length}
@@ -225,7 +236,7 @@ const Purpose = () => {
                         className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors"
                         aria-label="Siguiente"
                       >
-                        <ChevronRight size={20}/>
+                        <ChevronRight size={20} className="text-gray-900"/>
                       </button>
                     </div>
                     
