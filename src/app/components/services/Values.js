@@ -44,7 +44,7 @@ const Values = () => {
         
         {/* Section 1: Title - Orange */}
         <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-center uppercase" style={{ color: '#f99963' }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center uppercase" style={{ color: '#fb5103' }}>
             PROPUESTA DE VALOR
           </h2>
         </div>
@@ -78,7 +78,7 @@ const Values = () => {
 
         {/* Section 3: Big Title - Orange */}
         <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-center" style={{ color: '#f99963' }}>
+          <h2 className="text-3xl md:text-4xl font-bold text-center" style={{ color: '#fb5103' }}>
             QUE NOS DESTACA
           </h2>
         </div>

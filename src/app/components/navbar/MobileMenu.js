@@ -23,7 +23,7 @@ const MobileMenu = () => {
       {/* Hamburger Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden p-2 text-gray-800 hover:text-[#f99963] transition-colors"
+        className="lg:hidden p-2 text-gray-800 hover:text-[#fb5103] transition-colors"
         aria-label={isOpen ? "Cerrar menú" : "Abrir menú"}
       >
         {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -43,7 +43,7 @@ const MobileMenu = () => {
         <div className="flex justify-end p-4">
           <button
             onClick={() => setIsOpen(false)}
-            className="p-2 text-gray-800 hover:text-[#f99963]"
+            className="p-2 text-gray-800 hover:text-[#fb5103]"
             aria-label="Cerrar menú"
           >
             <X size={24} />
@@ -61,7 +61,7 @@ const MobileMenu = () => {
                 onClick={() => setIsOpen(false)}
                 className={`
                   py-4 px-4 text-lg font-bold uppercase border-b border-gray-100 last:border-b-0
-                  ${isActive ? 'text-[#f99963]' : 'text-gray-800 hover:text-[#f99963]'}
+                  ${isActive ? 'text-[#fb5103' : 'text-gray-800 hover:text-[#fb5103]'}
                 `}
               >
                 {item.label}
@@ -74,10 +74,10 @@ const MobileMenu = () => {
         <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100">
           <div className="text-sm text-gray-500">
             <p className="mb-2">Contacto:</p>
-            <a href="tel:+56998787894" className="text-[#f99963] hover:underline block">
+            <a href="tel:+56998787894" className="text-[#fb5103] hover:underline block">
               +56 9 9878 7894
             </a>
-            <a href="mailto:ventas@onstreet.com" className="text-[#f99963] hover:underline block">
+            <a href="mailto:ventas@onstreet.com" className="text-[#fb5103] hover:underline block">
               ventas@onstreet.com
             </a>
           </div>

@@ -1,7 +1,6 @@
 // components/navbar/index.js
 import NavLogo from './NavLogo';
 import NavLinks from './NavLinks';
-import ContactButton from './ContactButton';
 import MobileMenu from './MobileMenu';
 
 const Navbar = () => {
@@ -17,14 +16,8 @@ const Navbar = () => {
             <NavLinks />
           </div>
           
-          {/* Desktop Contact Button - Right (hidden on mobile) */}
-          <div className="hidden lg:flex flex-shrink-0">
-            <ContactButton />
-          </div>
-          
           {/* Mobile Menu Button (visible only on mobile) */}
           <div className="lg:hidden flex items-center gap-4">
-            <ContactButton />
             <MobileMenu />
           </div>
         </div>

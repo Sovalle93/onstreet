@@ -10,12 +10,12 @@ const Purpose = () => {
 
   const activities = [
     { 
-      title: 'Externalización: Comprar v/s arrendar',
+      title: 'Externalización  del Servicio y Operación',
       image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769457171/Landing_Externalizaci%C3%B3n_f0sel4.png',
       thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893369/Externalizacion_Foto_tkujf2.jpg'
     },
     { 
-      title: 'Listas de Espera',
+      title: 'Salud',
       image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1769456440/Landing_Listas_de_Espera_i8vkum.png',
       thumbnail: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771893369/Lista_Foto_d1hsps.jpg'
     },
@@ -120,16 +120,13 @@ const Purpose = () => {
         {/* What We Do Section */}
         <div className="mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8">
-            ¿QUÉ HACEMOS?
+            ¿Qué  Hacemos?
           </h2>
-          <h3 className="text-2xl md:text-3xl text-center text-[#f99963] font-semibold mb-6">
+          <h3 className="text-2xl md:text-3xl text-center text-[#fb5103] font-semibold mb-6">
             Arriendo y Servicio de Operación Integral de Oficinas y Clínicas Móviles
           </h3>
           <p className="text-lg md:text-xl text-center text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            En <span className="font-semibold text-gray-800">On Street</span> somos líderes en arriendo y operación de oficinas, 
-            sucursales y clínicas móviles en todo Chile. Nuestra solución integral nace de una convicción simple: la distancia no debe ser 
-            una barrera para recibir atención, servicios ni oportunidades. Por eso, organizamos nuestro trabajo en torno a cinco estrategias 
-            que orientan cómo llegamos a cada lugar del país, con quién trabajamos y el impacto que generamos en las personas y comunidades.
+            En On Street habilitamos y operamos móviles en todo Chile. Nuestra solución integral se organiza en cinco focos que definen con quién trabajamos y cómo generamos impacto real en las personas.
           </p>
         </div>
 

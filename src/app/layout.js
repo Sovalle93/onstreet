@@ -3,6 +3,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import Navbar from './components/navbar';
 import Footer from './components/home/Footer';
+import ContactButton from './components/common/ContactButton';
 
 const norden = localFont({
   src: [
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main className="min-h-screen">
           {children}
+          <ContactButton />
         </main>
         <Footer />
       </body>

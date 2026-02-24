@@ -14,14 +14,14 @@ const NavLink = ({ href, children }) => {
         px-4 py-2 uppercase font-bold text-sm tracking-wide
         relative transition-colors duration-300
         ${isActive
-          ? 'text-[#f99963]'
-          : 'text-gray-800 hover:text-[#f99963]'
+          ? 'text-[#fb5103]'
+          : 'text-gray-800 hover:text-[#fb5103]'
         }
       `}
     >
       {children}
       {isActive && (
-        <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-[#f99963] rounded-full"></span>
+        <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-1/2 h-0.5 bg-[#fb5103] rounded-full"></span>
       )}
     </Link>
   );

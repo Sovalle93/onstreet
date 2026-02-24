@@ -1,13 +1,20 @@
 'use client';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 
 const Pagination = ({ currentPage, totalPages }) => {
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  console.log('Pagination rendering:', { currentPage, totalPages, pathname });
 
   const handlePageChange = (page) => {
-    const url = page === 1 ? pathname : `${pathname}?page=${page}`;
-    router.push(url);
+    console.log('Changing to page:', page);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('page', page.toString());
+    const newUrl = `${pathname}?${params.toString()}`;
+    console.log('New URL:', newUrl);
+    router.push(newUrl);
   };
 
   const renderPageNumbers = () => {
@@ -28,7 +35,7 @@ const Pagination = ({ currentPage, totalPages }) => {
           onClick={() => handlePageChange(i)}
           className={`px-4 py-2 rounded-md ${
             currentPage === i
-              ? 'bg-[#dd7347] text-white'
+              ? 'bg-[#fb5103] text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
@@ -41,10 +48,10 @@ const Pagination = ({ currentPage, totalPages }) => {
   };
 
   return (
-    <div className="flex justify-center items-center space-x-2 mt-12">
+    <div className="flex justify-center items-center space-x-2">
       {/* Previous Button */}
       <button
-        onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
         className={`px-4 py-2 rounded-md ${
           currentPage === 1
@@ -60,7 +67,7 @@ const Pagination = ({ currentPage, totalPages }) => {
       
       {/* Next Button */}
       <button
-        onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
         className={`px-4 py-2 rounded-md ${
           currentPage === totalPages

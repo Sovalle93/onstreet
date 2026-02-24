@@ -1,12 +1,11 @@
 import NewsGrid from '../components/news/NewsGrid';
 import LatestNewsSidebar from '../components/news/LatestNewsSidebar';
-import NewsCarousel from '../components/news/NewsCarousel';
 import { client } from '../lib/Sanity';
 
 // Fetch initial data on server
 async function getNewsData() {
   try {
-    const query = `*[_type == "news"] | order(publishedAt desc)[0...12] {
+    const query = `*[_type == "news"] | order(publishedAt desc) {
       _id,
       title,
       slug,
@@ -65,7 +64,7 @@ export default async function NoticiasPage() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <NewsGrid initialNews={news} />
+            <NewsGrid initialNews={news} itemsPerPage={8} />
           </div>
           
           {/* Sidebar */}

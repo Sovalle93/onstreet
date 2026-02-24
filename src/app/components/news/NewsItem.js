@@ -22,7 +22,7 @@ const NewsItem = ({
         
         {/* Featured badge */}
         {featured && (
-          <div className="absolute top-3 left-3 z-10 bg-[#dd7347] text-white text-xs font-bold px-3 py-1 rounded-full">
+          <div className="absolute top-3 left-3 z-10 bg-[#fb5103] text-white text-xs font-bold px-3 py-1 rounded-full">
             Destacado
           </div>
         )}
@@ -47,7 +47,7 @@ const NewsItem = ({
         {/* Content */}
         <div className="p-6 flex-1">
           <div className="flex justify-between items-center mb-3">
-            <span className="text-sm font-medium text-[#dd7347] uppercase">
+            <span className="text-sm font-medium text-[#fb5103] uppercase">
               {category}
             </span>
             <span className="text-sm text-gray-500">

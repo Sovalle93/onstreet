@@ -31,7 +31,7 @@ const LatestNewsSidebar = ({ latestNews }) => {
                 })}
               </span>
               <Link href={`/noticias/${newsSlug}`}>
-                <h4 className="font-medium text-gray-800 hover:text-[#dd7347] cursor-pointer line-clamp-2">
+                <h4 className="font-medium text-gray-800 hover:text-[#fb5103] cursor-pointer line-clamp-2">
                   {news.title}
                 </h4>
               </Link>

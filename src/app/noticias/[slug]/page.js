@@ -36,7 +36,7 @@ const portableTextComponents = {
     h2: ({ children }) => <h3 className="text-2xl font-bold mt-6 mb-3">{children}</h3>,
     h3: ({ children }) => <h4 className="text-xl font-bold mt-4 mb-2">{children}</h4>,
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-[#dd7347] pl-4 italic my-4 text-gray-600">
+      <blockquote className="border-l-4 border-[#fb5103] pl-4 italic my-4 text-gray-600">
         {children}
       </blockquote>
     ),
@@ -47,7 +47,7 @@ const portableTextComponents = {
     link: ({ value, children }) => (
       <a 
         href={value.href} 
-        className="text-[#dd7347] hover:underline"
+        className="text-[#fb5103] hover:underline"
         target="_blank"
         rel="noopener noreferrer"
       >
@@ -101,13 +101,13 @@ export default async function NewsDetailPage({ params }) {
         {/* News Content */}
         <article className="bg-white rounded-xl p-6 md:p-8">
           {news.featured && (
-            <div className="inline-block bg-[#dd7347] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+            <div className="inline-block bg-[#fb5103] text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
               Destacado
             </div>
           )}
           
           <div className="mb-6 flex items-center flex-wrap gap-3">
-            <span className="text-sm font-medium text-[#dd7347] uppercase">{news.category}</span>
+            <span className="text-sm font-medium text-[#fb5103] uppercase">{news.category}</span>
             <span className="text-gray-400">•</span>
             <span className="text-sm text-gray-500">{formattedDate}</span>
           </div>
@@ -118,7 +118,7 @@ export default async function NewsDetailPage({ params }) {
           
           {/* Excerpt */}
           {news.excerpt && (
-            <div className="bg-gray-50 p-4 rounded-lg mb-8 border-l-4 border-[#dd7347]">
+            <div className="bg-gray-50 p-4 rounded-lg mb-8 border-l-4 border-[#fb5103]">
               <p className="text-gray-700 text-lg italic">
                 {news.excerpt}
               </p>
@@ -160,7 +160,7 @@ export default async function NewsDetailPage({ params }) {
                 href={news.source} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-flex items-center text-gray-700 hover:text-[#dd7347] font-medium transition-colors group"
+                className="inline-flex items-center text-gray-700 hover:text-[#fb5103] font-medium transition-colors group"
               >
                 Leer artículo original en {sourceHostname}
                 <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

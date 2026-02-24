@@ -110,7 +110,7 @@ const ClientCarousel = () => {
               onClick={() => setCurrentSet(index)}
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                 index === currentSet 
-                  ? 'w-6 bg-[#f99963]' 
+                  ? 'w-6 bg-[#fb5103]' 
                   : 'bg-gray-300 hover:bg-gray-400'
               }`}
               aria-label={`Ir al grupo ${index + 1}`}

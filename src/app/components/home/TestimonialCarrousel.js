@@ -129,7 +129,7 @@ const TestimonialCarousel = () => {
         {/* Auto-play indicator */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200 z-10">
           <div 
-            className="h-full bg-[#f99963] transition-all duration-100 ease-linear"
+            className="h-full bg-[#fb5103] transition-all duration-100 ease-linear"
             style={{ width: `${progress}%` }}
           />
         </div>

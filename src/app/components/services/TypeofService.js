@@ -6,17 +6,17 @@ const TypeOfService = () => {
     {
       title: 'Atención Presencial',
       description: 'Atención directa en terreno, cercana y personalizada.',
-      image: '/placeholder-presencial.jpg' // Replace with actual image path
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771932594/Atencio%CC%81n_Presencial_f5yozw.jpg'
     },
     {
       title: 'Atención Remota',
       description: 'Asistencia digital guiada desde cualquier ubicación.',
-      image: '/placeholder-remota.jpg' // Replace with actual image path
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771932595/atencio%CC%81n_remota_cln1a2.png'
     },
     {
       title: 'Autoatención',
       description: 'Gestión autónoma de trámites de forma rápida y simple.',
-      image: '/placeholder-autoatencion.jpg' // Replace with actual image path
+      image: 'https://res.cloudinary.com/dmivjpb65/image/upload/v1771932594/Autoatencio%CC%81n_l2wsi9.png'
     }
   ];
 
@@ -36,8 +36,15 @@ const TypeOfService = () => {
               className="border border-gray-300 rounded-xl bg-white p-8 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300"
             >
               {/* Image Placeholder */}
-              <div className="w-48 h-48 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center mb-6">
-                <div className="text-gray-400 text-4xl">{index + 1}</div>
+              <div className="w-48 h-48 rounded-lg flex items-center justify-center">
+                                  <div className="relative w-full h-32">
+                                    <Image
+                                      src={service.image}
+                                      alt={service.title}
+                                      fill
+                                      className="object-cover"
+                                    />
+                                  </div>
               </div>
               
               {/* Title */}

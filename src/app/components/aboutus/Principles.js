@@ -64,7 +64,7 @@ const Principles = () => {
     <section className="py-16 px-4 bg-white">
       <div className="container mx-auto max-w-4xl">
         
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" style={{ color: '#dd7347' }}>
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12" style={{ color: '#fb5103' }}>
           Nuestros principios
         </h2>
 
@@ -81,7 +81,7 @@ const Principles = () => {
                     <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4 text-center">
                       {principle.title}
                     </h3>
-                    <div className="w-16 h-1 bg-[#dd7347] mx-auto mb-6"></div>
+                    <div className="w-16 h-1 bg-[#fb5103] mx-auto mb-6"></div>
                     <p className="text-gray-600 text-center text-lg leading-relaxed">
                       {principle.description}
                     </p>
@@ -113,7 +113,7 @@ const Principles = () => {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  index === currentIndex ? 'w-6 bg-[#dd7347]' : 'bg-gray-300'
+                  index === currentIndex ? 'w-6 bg-[#fb5103]' : 'bg-gray-300'
                 }`}
               />
             ))}

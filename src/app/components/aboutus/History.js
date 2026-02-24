@@ -44,7 +44,7 @@ const History = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
             Nuestra Historia
           </h2>
-          <div className="w-24 h-1 bg-[#f99963] mx-auto mb-6"></div>
+          <div className="w-24 h-1 bg-[#fb5103] mx-auto mb-6"></div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             De la publicidad móvil a las soluciones integrales en movimiento
           </p>
@@ -73,11 +73,11 @@ const History = () => {
               {/* Stats Overlay */}
               <div className="grid grid-cols-2 gap-4 mt-6">
                 <div className="bg-white rounded-xl p-4 shadow-md">
-                  <div className="text-3xl font-bold text-[#f99963]">80+</div>
+                  <div className="text-3xl font-bold text-[#fb5103]">80+</div>
                   <div className="text-gray-600 text-sm">Unidades móviles</div>
                 </div>
                 <div className="bg-white rounded-xl p-4 shadow-md">
-                  <div className="text-3xl font-bold text-[#f99963]">1.5M+</div>
+                  <div className="text-3xl font-bold text-[#fb5103]">1.5M+</div>
                   <div className="text-gray-600 text-sm">Personas atendidas</div>
                 </div>
               </div>
@@ -89,7 +89,7 @@ const History = () => {
             {/* Evolution Card */}
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#f99963] rounded-full flex items-center justify-center text-white text-lg">①</span>
+                <span className="w-8 h-8 bg-[#fb5103] rounded-full flex items-center justify-center text-white text-lg">①</span>
                 Origen e Innovación
               </h3>
               <p className="text-gray-700 leading-relaxed text-lg">
@@ -102,7 +102,7 @@ const History = () => {
             {/* Transformation Card */}
             <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
               <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#f99963] rounded-full flex items-center justify-center text-white text-lg">②</span>
+                <span className="w-8 h-8 bg-[#fb5103] rounded-full flex items-center justify-center text-white text-lg">②</span>
                 Evolución Estratégica
               </h3>
               <p className="text-gray-700 leading-relaxed text-lg">
@@ -129,12 +129,12 @@ const History = () => {
             {/* Present Day Card */}
             <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-2xl p-8 shadow-xl">
               <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
-                <span className="w-8 h-8 bg-[#f99963] rounded-full flex items-center justify-center text-white text-lg">④</span>
+                <span className="w-8 h-8 bg-[#fb5103] rounded-full flex items-center justify-center text-white text-lg">④</span>
                 Actualidad
               </h3>
               <p className="text-gray-200 leading-relaxed text-lg">
-                Hoy, <span className="font-bold text-[#f99963]">On Street es la empresa líder en Chile</span> en arriendo y operación de soluciones móviles integrales. 
-                Con una flota de más de <span className="font-bold text-[#f99963]">80 unidades</span> entre oficinas, sucursales y clínicas móviles, 
+                Hoy, <span className="font-bold text-[#fb5103]">On Street es la empresa líder en Chile</span> en arriendo y operación de soluciones móviles integrales. 
+                Con una flota de más de <span className="font-bold text-[#fb5103]">80 unidades</span> entre oficinas, sucursales y clínicas móviles, 
                 atiende tanto al sector público como privado —AFP, bancos, mineras, municipalidades, organismos del Estado— 
                 bajo un modelo flexible que lleva los servicios hasta donde están las personas.
               </p>
@@ -157,7 +157,7 @@ const History = () => {
                   <div className={`w-14 h-14 ${milestone.color} rounded-xl flex items-center justify-center mb-4`}>
                     <Icon className="w-7 h-7 text-white" />
                   </div>
-                  <div className="text-2xl font-bold text-[#f99963] mb-2">{milestone.year}</div>
+                  <div className="text-2xl font-bold text-[#fb5103] mb-2">{milestone.year}</div>
                   <h4 className="text-xl font-bold text-gray-800 mb-2">{milestone.title}</h4>
                   <p className="text-gray-600">{milestone.description}</p>
                 </div>
@@ -169,7 +169,7 @@ const History = () => {
         {/* Footer Quote */}
         <div className="mt-20 text-center">
           <div className="max-w-3xl mx-auto">
-            <div className="text-5xl text-[#f99963] mb-4">"</div>
+            <div className="text-5xl text-[#fb5103] mb-4">"</div>
             <p className="text-2xl text-gray-700 italic font-light leading-relaxed">
               La distancia no debe ser una barrera para recibir atención, servicios ni oportunidades. 
               Por eso llevamos nuestras soluciones a cada lugar del país.

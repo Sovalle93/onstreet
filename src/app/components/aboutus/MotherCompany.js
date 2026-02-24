@@ -24,7 +24,7 @@ const MotherCompany = () => {
               rel="noopener noreferrer"
               className="bg-[#545454] text-white font-bold py-4 px-10 rounded-full uppercase hover:opacity-90 transition-opacity text-xl shadow-lg"
             >
-              Descubre Onstreet España
+              Descubre On street España
             </Link>
           </div>
         </div>
