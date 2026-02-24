@@ -12,6 +12,10 @@ const KPI = () => {
     <section className="py-16 px-4" style={{ backgroundColor: '#e8eaec' }}>
       <div className="container mx-auto max-w-6xl">
         {/* 5-Box Grid */}
+          <h3 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-6">
+            Nuestros Indicadores
+          </h3>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
           {indicators.map((indicator, index) => (
             <div 
