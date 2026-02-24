@@ -121,7 +121,7 @@ const Purpose = () => {
 
         {/* What We Do Section */}
         <div className="mb-16">
-          <h2 className="text-xl md:text-2xl font-bold text-center text-gray-800 mb-6">
+          <h2 className="text-2xl md:text-2xl font-bold text-center text-gray-800 mb-6">
             ¿QUÉ HACEMOS?
           </h2>
           <p className="text-lg md:text-xl text-center text-gray-600 max-w-3xl mx-auto">
